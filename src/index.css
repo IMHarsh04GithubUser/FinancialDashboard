@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss"; 
+
+body {
+background: #F7F7F7;
+background: linear-gradient(256deg, rgba(247, 247, 247, 1) 43%, rgba(223, 220, 232, 1) 100%);
+font-family: "Outfit", sans-serif;
+   
+
+}
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
