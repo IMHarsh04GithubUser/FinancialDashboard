@@ -1,19 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
-@import "tailwindcss"; 
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
 
-body {
-background: #F7F7F7;
-background: linear-gradient(256deg, rgba(247, 247, 247, 1) 43%, rgba(223, 220, 232, 1) 100%);
-font-family: "Outfit", sans-serif;
-   
-
+.body {
+  background: #f7f7f7;
+  background: linear-gradient(
+    256deg,
+    rgba(247, 247, 247, 1) 43%,
+    rgba(223, 220, 232, 1) 100%
+  );
+  font-family: "Outfit", sans-serif;
+  transition: background 0.3s ease;
 }
 /* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
+.body1 {
+  background: #191c24;
+  background: linear-gradient(
+    91deg,
+    rgba(25, 28, 36, 1) 94%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  transition: background 0.3s ease;
+  font-family: "Outfit", sans-serif;
+}
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
 }

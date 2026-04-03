@@ -1,11 +1,21 @@
-import React from 'react'
+import { createContext, useState, useEffect } from "react";
 
-const Appcontext = () => {
+const AppContext = createContext();
+
+const AppProvider = ({ children }) => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <AppContext.Provider value={{ toggleDarkMode, darkMode }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
 
-export default Appcontext
+export { AppContext, AppProvider };
