@@ -11,8 +11,8 @@
       <>
         
         <div>
-          <div className="darkmode-container p-2 flex items-center justify-end gap-5">
-            <div className="darkmode-icon h-15 w-15 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer">
+        <div className="darkmode-container p-2 flex items-center justify-end gap-2 md:gap-5">
+            <div className="darkmode-icon h-10 md:h-15 w-10 md:w-15 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer">
               {darkMode ? (
                 <CiLight className="text-2xl" onClick={toggleDarkMode} />
               ) : (

@@ -16,10 +16,8 @@ function App() {
     <BrowserRouter>
       <div className={`flex h-screen overflow-hidden ${darkMode ? "body1" : "body"}`}>
         <Sidebar />
-
         <div className="flex-1 flex flex-col">
           <Navbar />
-
           <div className="flex-1 overflow-auto">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />

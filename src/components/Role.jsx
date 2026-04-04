@@ -5,7 +5,7 @@ const Role = () => {
   const { darkMode } = useContext(AppContext);
   return (
     <>
-      <div className="mt-20 rounded-2xl text-xl transition-all duration-300 hover:bg-blue-50 hover:text-blue-500 ">
+      <div className="mt-10 md:mt-20 rounded-2xl text-lg md:text-xl transition-all duration-300 hover:bg-blue-50 hover:text-blue-500 ">
         <div className="relative w-full">
           <select
             className={

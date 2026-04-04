@@ -8,6 +8,7 @@ const data = mockdata();
 const AppProvider = ({ children }) => {
  
   const [darkMode, setDarkMode] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [bal, setbal] = useState(0);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
@@ -18,6 +19,9 @@ const AppProvider = ({ children }) => {
    {/*THEME */}
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
+  };
+  const toggleSidebar = () => {
+    setSidebarOpen((prev) => !prev);
   };
   {/*TOTAL BALANCE FOR DASHBOARD TOTALBALANCE CARD */}
   const calculateTotalBalance = () => {
@@ -140,7 +144,9 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         toggleDarkMode,
+        toggleSidebar,
         darkMode,
+        sidebarOpen,
         bal,
         data,
         income,
