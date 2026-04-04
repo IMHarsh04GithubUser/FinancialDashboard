@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div
         className={`${
           sidebarOpen ? "block" : "hidden"
-        } md:block fixed md:relative z-50 md:z-auto ${
+        } md:block fixed md:relative z-50 md:z-auto overflow-y-auto no-scrollbar ${
           darkMode
             ? "bg-[#232836] h-screen w-64 md:w-70 py-15 rounded-r-2xl shadow-lg flex flex-col gap-10"
             : "h-screen w-64 md:w-70 py-15 bg-[#FFFFFF] rounded-r-2xl shadow-lg flex flex-col gap-10"

@@ -2,12 +2,12 @@ import React from "react";
 import { useContext } from "react";
 import { AppContext } from "../appcontext/Appcontext";
 const Role = () => {
-  const { darkMode } = useContext(AppContext);
+  const { darkMode,setrole } = useContext(AppContext);
   return (
     <>
       <div className="mt-10 md:mt-20 rounded-2xl text-lg md:text-xl transition-all duration-300  hover:text-blue-500 ">
         <div className="relative w-full">
-          <select
+          <select onChange={(e) => setrole(e.target.value)}
             className={
               darkMode
                 ? "bg-[#191c24] position-relative  my-20  w-full appearance-none shadow-2xl  text-gray-700 py-2 px-3 pr-10 focus:outline-none focus:ring-2 focus:ring-transparent transition"

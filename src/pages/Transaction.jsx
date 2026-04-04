@@ -3,7 +3,8 @@ import { AppContext } from "../appcontext/Appcontext";
 import "../index.css";
 
 const Transaction = () => {
-  const { setFilterType, filteredData, darkMode } = useContext(AppContext);
+  const { setFilterType, filteredData, darkMode, role } =
+    useContext(AppContext);
 
   return (
     <div
@@ -41,12 +42,47 @@ const Transaction = () => {
           <option value="expense">Expense</option>
         </select>
       </div>
+      <div>
+        {role === "Admin" && (
+          <div
+            className={
+              darkMode
+                ? "bg-gray-800 text-cyan-50 p-4 rounded-lg mb-6"
+                : "bg-gray-200 text-gray-700 p-4 rounded-lg mb-6"
+            }
+          >
+            <h3 className="font-bold mb-2">Admin Controls</h3>
+            <p>You have administrative privileges.</p>
+          </div>
+        )}
+      </div>
+      <div>
+        {role === "Admin" && (
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5">
+            Admin Actions
+          </button>
+        )}
+      </div>
+      <br />
+      <div>
+        {role === "User" && (
+          <div
+            className={
+              darkMode
+                ? "bg-gray-800 text-cyan-50 p-4 rounded-lg mb-6"
+                : "bg-gray-200 text-gray-700 p-4 rounded-lg mb-6"
+            }
+          >
+            <h3 className="font-bold mb-2">User Don't Have any control</h3>
+          </div>
+        )}
+      </div>
 
       <div
         className={
           darkMode
-            ? "rounded-2xl shadow-lg overflow-x-auto bg-[#191c24]"
-            : "bg-white rounded-2xl shadow-lg overflow-x-auto"
+            ? "rounded-2xl shadow-lg overflow-x-auto no-scrollbar bg-[#191c24]"
+            : "bg-white rounded-2xl shadow-lg overflow-x-auto no-scrollbar"
         }
       >
         <table className=" text-left border-collapse w-fit md:w-full">
@@ -90,7 +126,11 @@ const Transaction = () => {
                 </td>
 
                 <td
-                  className={darkMode ? "px-6 py-4 text-cyan-50 hidden md:table-cell" : "px-6 py-4 hidden md:table-cell"}
+                  className={
+                    darkMode
+                      ? "px-6 py-4 text-cyan-50 hidden md:table-cell"
+                      : "px-6 py-4 hidden md:table-cell"
+                  }
                 >
                   {t.category}
                 </td>

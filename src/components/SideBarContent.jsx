@@ -10,7 +10,7 @@ const SideBarContent = () => {
   const { toggleSidebar } = useContext(AppContext);
   return (
     <>
-    <div className="flex flex-col my-20 gap-10">
+    <div className="flex flex-col md:my-20 gap-10">
       <NavLink to="/" onClick={toggleSidebar}>
         <div className="dashboard flex items-center gap-3 p-3 px-4 md:px-10 rounded-r-xl text-lg md:text-xl cursor-pointer transition-all duration-300 hover:bg-blue-50 hover:text-blue-500">
           <MdDashboard className="h-6 md:h-8 w-6 md:w-8 text-blue-400 hover:text-blue-500" />

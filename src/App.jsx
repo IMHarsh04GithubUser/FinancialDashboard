@@ -18,7 +18,7 @@ function App() {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <Navbar />
-          <div className="flex-1 overflow-auto">
+          <div className="flex-1 overflow-auto no-scrollbar">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/transactions" element={<Transaction />} />

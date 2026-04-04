@@ -10,6 +10,7 @@
   );
   font-family: "Outfit", sans-serif;
   transition: background 0.3s ease;
+
 }
 /* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar {
