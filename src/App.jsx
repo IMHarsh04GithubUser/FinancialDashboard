@@ -20,7 +20,7 @@ function App() {
           <Navbar />
           <div className="flex-1 overflow-auto">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/transactions" element={<Transaction />} />
               <Route path="/insights" element={<Insights />} />
             </Routes>

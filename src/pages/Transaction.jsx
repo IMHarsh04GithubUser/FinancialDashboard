@@ -49,7 +49,7 @@ const Transaction = () => {
             : "bg-white rounded-2xl shadow-lg overflow-x-auto"
         }
       >
-        <table className="w-full text-left border-collapse">
+        <table className=" text-left border-collapse w-fit md:w-full">
           <thead
             className={
               darkMode
@@ -60,7 +60,7 @@ const Transaction = () => {
             <tr>
               <th className="px-6 py-3">Date</th>
               <th className="px-6 py-3">Amount</th>
-              <th className="px-6 py-3">Category</th>
+              <th className="px-6 py-3 hidden md:table-cell">Category</th>
               <th className="px-6 py-3">Type</th>
             </tr>
           </thead>
@@ -90,7 +90,7 @@ const Transaction = () => {
                 </td>
 
                 <td
-                  className={darkMode ? "px-6 py-4 text-cyan-50" : "px-6 py-4"}
+                  className={darkMode ? "px-6 py-4 text-cyan-50 hidden md:table-cell" : "px-6 py-4 hidden md:table-cell"}
                 >
                   {t.category}
                 </td>

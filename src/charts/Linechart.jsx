@@ -98,12 +98,11 @@ export default function LineChart() {
 
   return (
     <div
-      style={{ width: "50%", height: "500px" }}
-      className={
+      className={`w-full md:w-1/2 h-64 md:h-125 ${
         darkMode
           ? "bg-[#232836] hover:scale-105 transition-all duration-300"
           : "hover:scale-105 transition-all duration-300"
-      }
+      }`}
     >
       <Line data={data} options={options} />
     </div>
