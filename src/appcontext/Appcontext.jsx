@@ -1,19 +1,21 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect,useMemo } from "react";
 import mockdata from "../mockdata/mockdata1";
 
 const AppContext = createContext();
-
 const data = mockdata();
 
+
 const AppProvider = ({ children }) => {
-  {/*THEME */}
+ 
   const [darkMode, setDarkMode] = useState(false);
   const [bal, setbal] = useState(0);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("all");
+  const [transactions, setTransactions] = useState(data);
 
+   {/*THEME */}
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
@@ -25,8 +27,6 @@ const AppProvider = ({ children }) => {
 
     setbal(total);
   };
-
-
   {/*TOTAL INCOME FOR DASHBOARD TOTALINCOME CARD */}
   const calculateTotalIncome = () => {
     const total = data.reduce((acc, item) => {
@@ -35,7 +35,6 @@ const AppProvider = ({ children }) => {
 
     setIncome(total);
   };
-
   {/*TOTAL EXPENSE FOR DASHBOARD TOTALEXPENSE CARD */}
   const calculateTotalExpense = () => {
     const total = data.reduce((acc, item) => {
@@ -44,7 +43,7 @@ const AppProvider = ({ children }) => {
 
     setExpense(total);
   };
-
+  {/*FILTERED DATA FOR INSIGHTS PAGE */}
   const filteredData = mockdata()
     .filter(t =>
       t.category.toLowerCase().includes(search.toLowerCase())
@@ -54,15 +53,89 @@ const AppProvider = ({ children }) => {
     );
 
 
+
+
+  //INSIGHTS CALCULATIONS
+  {/*1. Highest Spending Category */}
+  const highestSpending = useMemo(() => {
+    const categoryMap = {};
+
+    transactions.forEach((t) => {
+      if (t.type === "expense") {
+        categoryMap[t.category] =
+          (categoryMap[t.category] || 0) + t.amount;
+      }
+    });
+
+    let maxCategory = "";
+    let maxAmount = 0;
+
+    for (let key in categoryMap) {
+      if (categoryMap[key] > maxAmount) {
+        maxAmount = categoryMap[key];
+        maxCategory = key;
+      }
+    }
+
+    return { category: maxCategory, amount: maxAmount };
+  }, [transactions]);
+
+  {/*2. Monthly Expense Comparison */}
+  const monthlyComparison = useMemo(() => {
+    const getMonthlyExpense = (month) => {
+      return transactions
+        .filter(t => t.type === "expense" && new Date(t.date).toLocaleString('default', { month: 'short' }) === month)
+        .reduce((acc, t) => acc + t.amount, 0);
+    };
+
+    const currentMonth = "Mar";
+    const previousMonth = "Feb";
+
+    const current = getMonthlyExpense(currentMonth);
+    const previous = getMonthlyExpense(previousMonth);
+
+    const difference = current - previous;
+
+    return {
+      current,
+      previous,
+      difference,
+      message:
+        difference > 0
+          ? `Spent ₹${difference} more this month`
+          : `Saved ₹${Math.abs(difference)} this month`
+    };
+  }, [transactions]);
+
+  {/*3. Totals for Dashboard Cards */}
+  const totals = useMemo(() => {
+    let income = 0;
+    let expense = 0;
+
+    transactions.forEach((t) => {
+      if (t.type === "income") income += t.amount;
+      else expense += t.amount;
+    });
+
+    return {
+      income,
+      expense,
+      balance: income - expense,
+    };
+  }, [transactions]);
+
+
+    {/*USE EFFECT TO CALCULATE BALANCE, INCOME, AND EXPENSE ON COMPONENT MOUNT */}
     useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     calculateTotalBalance();
     calculateTotalIncome();
     calculateTotalExpense();
-   
-
-
+    
   }, []);
+
+
+
   return (
     <AppContext.Provider
       value={{
@@ -76,7 +149,12 @@ const AppProvider = ({ children }) => {
         filterType,
         setSearch,
         setFilterType,
-        filteredData
+        filteredData,
+        transactions,
+        setTransactions,
+        highestSpending,
+        monthlyComparison,
+        totals,
       }}
     >
       {children}
@@ -85,3 +163,4 @@ const AppProvider = ({ children }) => {
 };
 
 export { AppContext, AppProvider };
+

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "./appcontext/Appcontext.jsx";
+import {AppContext} from "./appcontext/Appcontext"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./layout/Sidebar";
